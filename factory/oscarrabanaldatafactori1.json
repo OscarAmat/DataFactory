@@ -1,0 +1,9 @@
+{
+	"name": "oscarrabanaldatafactori1",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "8db67adf-0767-4993-9424-9703e7b700fe",
+		"tenantId": "87eb3934-c2bf-4979-8904-182e9a9fcc1a"
+	}
+}
