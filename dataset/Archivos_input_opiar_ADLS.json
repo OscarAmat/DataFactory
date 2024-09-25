@@ -1,0 +1,41 @@
+{
+	"name": "Archivos_input_opiar_ADLS",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Conector_ADLS_Datafactory",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"Achivo_input": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": {
+					"value": "@dataset().Achivo_input",
+					"type": "Expression"
+				},
+				"folderPath": "proyectofinal/input",
+				"fileSystem": "oscardeamat"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "Cod_Categoria",
+				"type": "String"
+			},
+			{
+				"name": "Nombre",
+				"type": "String"
+			}
+		]
+	}
+}
