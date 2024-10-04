@@ -1,0 +1,71 @@
+{
+	"name": "PipelinePrincipal",
+	"properties": {
+		"description": "pipelina principal para la automatizacion",
+		"activities": [
+			{
+				"name": "ExecutarIngestaCapaBronce",
+				"type": "ExecutePipeline",
+				"dependsOn": [],
+				"policy": {
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "ingesta_capa_bronce",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "ExecutarIngesCapaPlata",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "ExecutarIngestaCapaBronce",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "Ingesta_capa_bronce_plata",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "ExecutarIngestaCapaOro",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "ExecutarIngesCapaPlata",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "ingesta_capa_plata_oro",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			}
+		],
+		"annotations": []
+	}
+}
